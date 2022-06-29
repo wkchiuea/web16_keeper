@@ -13,12 +13,20 @@ function App() {
     });
   }
 
+  function deleteItem(id) {
+    setItemList((preItemList) => {
+      return preItemList.filter((item, i) => {
+        return i !== id;
+      });
+    });
+  }
+
   return (
     <div>
       <Header />
       <CreateArea addItem={addItem} />
       {itemList.map((item, i) => {
-        return <Note key={i} title={item.title} content={item.content} />
+        return <Note key={i} id={i} title={item.title} content={item.content} deleteItem={deleteItem} />
       })}
       <Footer />
     </div>
